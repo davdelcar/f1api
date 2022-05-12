@@ -5,9 +5,15 @@ import com.aiss.f1api.repositories.RaceRepository;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class RaceService {
@@ -31,5 +37,13 @@ public class RaceService {
             return false;
         }
      }
+
+    public List<RaceModel> getAllRaces(int numeroDePagina, int medidaDePagina, String ordenarPor, String sortDir){
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?Sort.by(ordenarPor).ascending():Sort.by(ordenarPor).descending();
+        Pageable pageable =  PageRequest.of(numeroDePagina, medidaDePagina, sort);
+        Page<RaceModel> races = raceRepository.findAll(pageable);
+        List<RaceModel> listaDeRaces = races.getContent();
+        return listaDeRaces;
+    }
     
 }

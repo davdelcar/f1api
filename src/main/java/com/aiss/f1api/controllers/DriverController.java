@@ -4,6 +4,7 @@ import com.aiss.f1api.services.DriverService;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.List;
 
 import com.aiss.f1api.models.DriverModel;
 import com.aiss.f1api.repositories.DriverRepository;
@@ -39,6 +40,15 @@ public class DriverController {
     public ArrayList<DriverModel> getPorAño(@RequestParam("year") Integer year){
         return driverService.getPorAño(year);
     }
+
+    @GetMapping("/ordenacion")
+    public List<DriverModel> listarDrivers
+    (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
+    @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
+    @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
+    @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
+        return driverService.getAllDrivers(pages, size, ordenarPor, sortDir);
+    } 
 
     @PostMapping("/crearDriver")
     public DriverModel saveDriver(@RequestBody DriverModel driver){

@@ -4,6 +4,7 @@ import com.aiss.f1api.services.RaceService;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.List;
 
 import com.aiss.f1api.models.RaceModel;
 import com.aiss.f1api.repositories.RaceRepository;
@@ -34,6 +35,15 @@ public class RaceController {
     public Optional<RaceModel> getPorId(@PathVariable("id") Long Id){
         return raceService.getPorId(Id);
     }
+
+    @GetMapping("/ordenacion")
+    public List<RaceModel> listarRaces
+    (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
+    @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
+    @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
+    @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
+        return raceService.getAllRaces(pages, size, ordenarPor, sortDir);
+    } 
 
     @PostMapping("/crearRace")
     public RaceModel saveRace(@RequestBody RaceModel race){

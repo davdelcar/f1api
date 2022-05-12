@@ -6,10 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Repository
-public interface DriverRepository extends CrudRepository<DriverModel, Long> {
+public interface DriverRepository extends JpaRepository<DriverModel, Long> {
     //Metodos por defecto que trae esta interfaz
 
     public abstract ArrayList<DriverModel> findByYear(Integer year);
