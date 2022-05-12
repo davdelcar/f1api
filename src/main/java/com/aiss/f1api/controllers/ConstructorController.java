@@ -1,12 +1,16 @@
 package com.aiss.f1api.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.aiss.f1api.models.ConstructorModel;
+import com.aiss.f1api.repositories.ConstructorRepository;
 import com.aiss.f1api.services.ConstructorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,8 +42,15 @@ public class ConstructorController {
     public ArrayList<ConstructorModel> getPorAño(@RequestParam("year") Integer year){
         return constructorService.getPorAño(year);
     }
-
-    @PostMapping("/crearConstructor")
+    @GetMapping("/ordenacion")
+    public List<ConstructorModel> listarConstructores
+    (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
+    @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
+    @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
+    @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
+        return constructorService.getAllCosntructors(pages, size, ordenarPor, sortDir);
+    }   
+    @PostMapping("/crear")
     public ConstructorModel saveConstructor(@RequestBody ConstructorModel constructor){
         return this.constructorService.saveConstructor(constructor);
     }
@@ -54,7 +65,7 @@ public class ConstructorController {
         }
     }
 
-    @PutMapping("/actualizarConst/{id}")
+    @PutMapping("/actualizar/{id}")
     public ConstructorModel updateConstructor(@PathVariable("id") Long id, @RequestBody ConstructorModel constructor){
         ConstructorModel constructor1 = constructorService.getPorId(id).get();
         constructor1.setId(constructor.getId());
