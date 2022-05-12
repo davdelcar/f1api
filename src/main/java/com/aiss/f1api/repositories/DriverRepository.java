@@ -5,8 +5,13 @@ import com.aiss.f1api.models.DriverModel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
+
 @Repository
 public interface DriverRepository extends CrudRepository<DriverModel, Long> {
     //Metodos por defecto que trae esta interfaz
+
+    public abstract ArrayList<DriverModel> findByYear(Integer year);
     
 }
