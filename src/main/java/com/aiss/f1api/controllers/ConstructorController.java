@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,27 +24,27 @@ public class ConstructorController {
     ConstructorService constructorService;
 
 
-    @GetMapping()
+    @GetMapping("/getAll")
     public ArrayList<ConstructorModel> getConstructors(){
         return constructorService.getConstructors();
     }
 
-    @GetMapping( path = "/{id}")
+    @GetMapping("/get/{id}")
     public Optional<ConstructorModel> getPorId(@PathVariable("id") Long Id){
         return constructorService.getPorId(Id);
     }
 
-    @GetMapping("/query")
+    @GetMapping("/filtradoPorAño")
     public ArrayList<ConstructorModel> getPorAño(@RequestParam("year") Integer year){
         return constructorService.getPorAño(year);
     }
 
-    @PostMapping()
+    @PostMapping("/crearConstructor")
     public ConstructorModel saveConstructor(@RequestBody ConstructorModel constructor){
         return this.constructorService.saveConstructor(constructor);
     }
 
-    @DeleteMapping( path = "/{id}")
+    @DeleteMapping("/borrar/{id}")
     public String deleteById(@PathVariable("id") Long Id){
         boolean ok = this.constructorService.deleteConstructor(Id);
         if (ok){
@@ -53,6 +54,14 @@ public class ConstructorController {
         }
     }
 
-    //@PutMapping()
+    @PutMapping("/actualizarConst/{id}")
+    public ConstructorModel updateConstructor(@PathVariable("id") Long id, @RequestBody ConstructorModel constructor){
+        ConstructorModel constructor1 = constructorService.getPorId(id).get();
+        constructor1.setId(constructor.getId());
+        constructor1.setPos(constructor.getPos());
+        constructor1.setTeam(constructor.getTeam());
+        constructor1.setYear(constructor.getYear());
+        return constructorService.saveConstructor(constructor1);
+    }
     
 }

@@ -10,6 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConstructorRepository extends CrudRepository<ConstructorModel, Long>{
 
-    ArrayList<ConstructorModel> findByYear(Integer year);
-    //Metodos por defecto que trae esta interfaz
+    public abstract ArrayList<ConstructorModel> findByYear(Integer year);
 }
