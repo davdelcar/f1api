@@ -26,17 +26,17 @@ public class RaceController {
     @Autowired
     RaceService raceService;
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public ArrayList<RaceModel> getRaces(){
         return raceService.getRaces();
     }
 
-    @GetMapping("/get/{id}")
-    public Optional<RaceModel> getPorId(@PathVariable("id") Long Id){
-        return raceService.getPorId(Id);
+    @GetMapping("{id}")
+    public Optional<RaceModel> getById(@PathVariable("id") Long Id){
+        return raceService.getById(Id);
     }
 
-    @GetMapping("/ordenacion")
+    @GetMapping("/query")
     public List<RaceModel> listarRaces
     (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
@@ -45,12 +45,12 @@ public class RaceController {
         return raceService.getAllRaces(pages, size, ordenarPor, sortDir);
     } 
 
-    @PostMapping("/crearRace")
+    @PostMapping()
     public RaceModel saveRace(@RequestBody RaceModel race){
         return raceService.saveRace(race);
     }
 
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long Id){
         boolean ok = this.raceService.deleteRace(Id);
         if (ok){
@@ -60,7 +60,7 @@ public class RaceController {
         }
     }
 
-    @PutMapping("/actualizarRace/{id}")
+    @PutMapping("{id}")
     public RaceModel updateRace(@PathVariable("id") Long id, @RequestBody RaceModel race){
         RaceModel race1 = raceService.getPorId(id).get();
         race1.setId(race.getId());

@@ -26,22 +26,22 @@ public class DriverController {
     @Autowired
     DriverService driverService;
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public ArrayList<DriverModel> getDrivers(){
         return driverService.getDrivers();
     }
 
-    @GetMapping("/get/{id}")
-    public Optional<DriverModel> getPorId(@PathVariable("id") Long Id){
-        return driverService.getPorId(Id);
+    @GetMapping("{id}")
+    public Optional<DriverModel> getById(@PathVariable("id") Long Id){
+        return driverService.getById(Id);
     }
 
     @GetMapping("/filtradoPorAño")
-    public ArrayList<DriverModel> getPorAño(@RequestParam("year") Integer year){
-        return driverService.getPorAño(year);
+    public ArrayList<DriverModel> getByYear(@RequestParam("year") Integer year){
+        return driverService.getByYear(year);
     }
 
-    @GetMapping("/ordenacion")
+    @GetMapping("/query")
     public List<DriverModel> listarDrivers
     (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
@@ -50,12 +50,12 @@ public class DriverController {
         return driverService.getAllDrivers(pages, size, ordenarPor, sortDir);
     } 
 
-    @PostMapping("/crearDriver")
+    @PostMapping()
     public DriverModel saveDriver(@RequestBody DriverModel driver){
         return driverService.saveDriver(driver);
     }
 
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long Id){
         boolean ok = this.driverService.deleteDriver(Id);
         if (ok){
@@ -65,9 +65,9 @@ public class DriverController {
         }
     }
 
-    @PutMapping("/actualizarDriv/{id}")
+    @PutMapping("{id}")
     public DriverModel updateDriver(@PathVariable("id") Long id, @RequestBody DriverModel driver){
-        DriverModel driver1 = driverService.getPorId(id).get();
+        DriverModel driver1 = driverService.getById(id).get();
         driver1.setId(driver.getId());
         driver1.setPos(driver.getPos());
         driver1.setName(driver.getName());

@@ -28,10 +28,10 @@ public class DriverService {
     public DriverModel saveDriver(DriverModel driver){
         return driverRepository.save(driver);
     }
-    public Optional<DriverModel> getPorId(Long id){
+    public Optional<DriverModel> getById(Long id){
         return driverRepository.findById(id);
     }
-    public ArrayList<DriverModel> getPorAño(Integer year){
+    public ArrayList<DriverModel> getByYear(Integer year){
         return driverRepository.findByYear(year);
     }
     public boolean deleteDriver(Long id){

@@ -28,21 +28,21 @@ public class ConstructorController {
     ConstructorService constructorService;
 
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public ArrayList<ConstructorModel> getConstructors(){
         return constructorService.getConstructors();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("{id}")
     public Optional<ConstructorModel> getPorId(@PathVariable("id") Long Id){
-        return constructorService.getPorId(Id);
+        return constructorService.getById(Id);
     }
 
-    @GetMapping("/filtradoPorAño")
-    public ArrayList<ConstructorModel> getPorAño(@RequestParam("year") Integer year){
-        return constructorService.getPorAño(year);
+    @GetMapping("/getByYear")
+    public ArrayList<ConstructorModel> getByAño(@RequestParam("year") Integer year){
+        return constructorService.getByYear(year);
     }
-    @GetMapping("/ordenacion")
+    @GetMapping("/query")
     public List<ConstructorModel> listarConstructores
     (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
@@ -50,12 +50,12 @@ public class ConstructorController {
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
         return constructorService.getAllCosntructors(pages, size, ordenarPor, sortDir);
     }   
-    @PostMapping("/crear")
+    @PostMapping()
     public ConstructorModel saveConstructor(@RequestBody ConstructorModel constructor){
         return this.constructorService.saveConstructor(constructor);
     }
 
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long Id){
         boolean ok = this.constructorService.deleteConstructor(Id);
         if (ok){
@@ -65,9 +65,9 @@ public class ConstructorController {
         }
     }
 
-    @PutMapping("/actualizar/{id}")
+    @PutMapping("{id}")
     public ConstructorModel updateConstructor(@PathVariable("id") Long id, @RequestBody ConstructorModel constructor){
-        ConstructorModel constructor1 = constructorService.getPorId(id).get();
+        ConstructorModel constructor1 = constructorService.getById(id).get();
         constructor1.setId(constructor.getId());
         constructor1.setPos(constructor.getPos());
         constructor1.setTeam(constructor.getTeam());

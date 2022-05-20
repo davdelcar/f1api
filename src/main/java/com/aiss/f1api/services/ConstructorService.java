@@ -26,10 +26,10 @@ public class ConstructorService {
     public ConstructorModel saveConstructor(ConstructorModel constructor){
         return constructorRepository.save(constructor);
     }
-    public Optional<ConstructorModel> getPorId(Long id){
+    public Optional<ConstructorModel> getById(Long id){
         return constructorRepository.findById(id);
     }
-    public ArrayList<ConstructorModel> getPorAño(Integer year){
+    public ArrayList<ConstructorModel> getByYear(Integer year){
         return constructorRepository.findByYear(year);
     }
     public boolean deleteConstructor(Long id){

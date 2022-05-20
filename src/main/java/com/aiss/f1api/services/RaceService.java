@@ -26,7 +26,7 @@ public class RaceService {
     public RaceModel saveRace(RaceModel race){
         return raceRepository.save(race);
     }
-    public Optional<RaceModel> getPorId(Long id){
+    public Optional<RaceModel> getById(Long id){
         return raceRepository.findById(id);
     }
     public boolean deleteRace(Long id){
