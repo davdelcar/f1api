@@ -65,7 +65,7 @@ public class RaceController {
 
     @PutMapping("{id}")
     public RaceModel updateRace(@PathVariable("id") Long id, @RequestBody RaceModel race){
-        RaceModel race1 = raceService.getPorId(id).get();
+        RaceModel race1 = raceService.getById(id).get();
         race1.setId(race.getId());
         race1.setGp(race.getGp());
         race1.setFirst(race.getFirst());
