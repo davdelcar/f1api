@@ -32,12 +32,15 @@ public class RaceController {
     }
 
     @GetMapping("{id}")
-    public Optional<RaceModel> getById(@PathVariable("id") Long Id){
-        return raceService.getById(Id);
+    public Optional<RaceModel> getById(@PathVariable("id") Long id){
+        return raceService.getById(id);
     }
-
+    @GetMapping("/getByGp")
+    public ArrayList<RaceModel> getByGp(@RequestParam("gp") String gp){
+        return raceService.getByGp(gp);
+    }
     @GetMapping("/query")
-    public List<RaceModel> listarRaces
+    public List<RaceModel> listRaces
     (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
@@ -51,12 +54,12 @@ public class RaceController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteById(@PathVariable("id") Long Id){
-        boolean ok = this.raceService.deleteRace(Id);
+    public String deleteById(@PathVariable("id") Long id){
+        boolean ok = this.raceService.deleteRace(id);
         if (ok){
-            return "Se elimino el race con id "+Id;
+            return "Se elimino el race con id "+id;
         }else{
-            return "No se pudo eliminar el race con Id"+Id;
+            return "No se pudo eliminar el race con Id"+id;
         }
     }
 

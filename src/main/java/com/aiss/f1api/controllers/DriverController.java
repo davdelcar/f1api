@@ -32,17 +32,17 @@ public class DriverController {
     }
 
     @GetMapping("{id}")
-    public Optional<DriverModel> getById(@PathVariable("id") Long Id){
-        return driverService.getById(Id);
+    public Optional<DriverModel> getById(@PathVariable("id") Long id){
+        return driverService.getById(id);
     }
 
-    @GetMapping("/filtradoPorAño")
+    @GetMapping("/getByYear")
     public ArrayList<DriverModel> getByYear(@RequestParam("year") Integer year){
         return driverService.getByYear(year);
     }
 
     @GetMapping("/query")
-    public List<DriverModel> listarDrivers
+    public List<DriverModel> listDrivers
     (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
@@ -56,12 +56,12 @@ public class DriverController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteById(@PathVariable("id") Long Id){
-        boolean ok = this.driverService.deleteDriver(Id);
+    public String deleteById(@PathVariable("id") Long id){
+        boolean ok = this.driverService.deleteDriver(id);
         if (ok){
-            return "Se elimino el driver con id "+Id;
+            return "Se elimino el driver con id "+id;
         }else{
-            return "No se pudo eliminar el driver con Id"+Id;
+            return "No se pudo eliminar el driver con Id"+id;
         }
     }
 

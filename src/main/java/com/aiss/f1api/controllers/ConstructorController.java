@@ -34,16 +34,16 @@ public class ConstructorController {
     }
 
     @GetMapping("{id}")
-    public Optional<ConstructorModel> getPorId(@PathVariable("id") Long Id){
-        return constructorService.getById(Id);
+    public Optional<ConstructorModel> getById(@PathVariable("id") Long id){
+        return constructorService.getById(id);
     }
 
     @GetMapping("/getByYear")
-    public ArrayList<ConstructorModel> getByAño(@RequestParam("year") Integer year){
+    public ArrayList<ConstructorModel> getByYear(@RequestParam("year") Integer year){
         return constructorService.getByYear(year);
     }
     @GetMapping("/query")
-    public List<ConstructorModel> listarConstructores
+    public List<ConstructorModel> listConstructors
     (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
@@ -56,12 +56,12 @@ public class ConstructorController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteById(@PathVariable("id") Long Id){
-        boolean ok = this.constructorService.deleteConstructor(Id);
+    public String deleteById(@PathVariable("id") Long id){
+        boolean ok = this.constructorService.deleteConstructor(id);
         if (ok){
-            return "Se elmino el constrructor con id "+Id;
+            return "Se elmino el constrructor con id "+id;
         }else{
-            return "No se pudo eliminar el constructor con Id"+Id;
+            return "No se pudo eliminar el constructor con Id"+id;
         }
     }
 
