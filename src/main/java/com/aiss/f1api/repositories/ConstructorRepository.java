@@ -13,5 +13,4 @@ import org.springframework.stereotype.Repository;
 public interface ConstructorRepository extends JpaRepository<ConstructorModel, Long>{
 
     public abstract ArrayList<ConstructorModel> findByYear(Integer year);
-    public abstract ArrayList<ConstructorModel> findAll (Pageable pageable);
 }

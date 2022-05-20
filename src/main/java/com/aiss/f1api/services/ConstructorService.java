@@ -40,7 +40,7 @@ public class ConstructorService {
             return false;
         }
     }
-    public List<ConstructorModel> getAllCosntructors(int numeroDePagina, int medidaDePagina, String ordenarPor, String sortDir){
+    public List<ConstructorModel> getAllConstructors(int numeroDePagina, int medidaDePagina, String ordenarPor, String sortDir){
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?Sort.by(ordenarPor).ascending():Sort.by(ordenarPor).descending();
         Pageable pageable =  PageRequest.of(numeroDePagina, medidaDePagina, sort);
         Page<ConstructorModel> constructores = constructorRepository.findAll(pageable);

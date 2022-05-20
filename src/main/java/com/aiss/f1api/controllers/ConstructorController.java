@@ -48,7 +48,7 @@ public class ConstructorController {
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
-        return constructorService.getAllCosntructors(pages, size, ordenarPor, sortDir);
+        return constructorService.getAllConstructors(pages, size, ordenarPor, sortDir);
     }   
     @PostMapping()
     public ConstructorModel saveConstructor(@RequestBody ConstructorModel constructor){
