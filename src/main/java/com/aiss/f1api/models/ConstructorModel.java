@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "constructors")
 
 public class ConstructorModel {
+    public ConstructorModel() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,7 @@ public class ConstructorModel {
         this.team=string;
         this.year=i;
     }
-
+   
     /**
      * @return Long return the id
      */

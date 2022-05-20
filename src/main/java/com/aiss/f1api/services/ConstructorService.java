@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.aiss.f1api.models.ConstructorModel;
 import com.aiss.f1api.repositories.ConstructorRepository;
@@ -29,7 +30,7 @@ public class ConstructorService {
     public Optional<ConstructorModel> getById(Long id){
         return constructorRepository.findById(id);
     }
-    public ArrayList<ConstructorModel> getByYear(Integer year){
+    public List<ConstructorModel> getByYear(Integer year){
         return constructorRepository.findByYear(year);
     }
     public boolean deleteConstructor(Long id){

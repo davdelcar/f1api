@@ -8,7 +8,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.aiss.f1api.models.ConstructorModel;
+import com.aiss.f1api.models.RaceModel;
 import com.aiss.f1api.repositories.ConstructorRepository;
+import com.aiss.f1api.repositories.RaceRepository;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -20,45 +22,45 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 
-public class ConstructorRepositoryTest {    
-
+public class RaceRepositoryTest {
+    
     @Autowired
-    private ConstructorRepository repo;
+    private RaceRepository repo;
     @Test
 	@Order(1)
-	void testSaveConstructor() {
-		ConstructorModel Mini = new ConstructorModel(2L,"Mini", 69, 2080);
-		repo.save(Mini);
-		assertEquals("Mini", Mini.getTeam());
+	void testSaveRace() {
+		RaceModel Barcelona = new RaceModel("Montmelo", "2002","David","Julio","Messi", "CR7", "Kiki", "ViniJR","Pato","Momo","Isabel Pantoja","Kiko Rivera");
+		repo.save(Barcelona);
+		assertEquals("Montmelo", Barcelona.getGp());
 	}
 	@Test
 	@Order(2)
-	void testSaveConstructor2() {
-		ConstructorModel Citroen = new ConstructorModel(3L,"Citroen", 69, 2080);
-		repo.save(Citroen);
-		assertEquals(2080, Citroen.getYear());
+	void testSaveRace2() {
+		RaceModel Monaco = new RaceModel("Monaco", "2002","David","Julio","Messi", "CR7", "Kiki", "ViniJR","Pato","Momo","Isabel Pantoja","Kiko Rivera");
+		repo.save(Monaco);
+		assertEquals("David", Monaco.getFirst());
 	}
 	@Test
 	@Order(3)
-	void testUpdateConstructor(){
-		ConstructorModel Mini2 = repo.findById(1L).get();
-		Mini2.setPts(190);	
+	void testUpdateRace(){
+		RaceModel Mini2 = repo.findById(1L).get();
+		Mini2.setSecond("Pepe");;	
 		repo.save(Mini2);
-		ConstructorModel MiniUpdated= repo.findById(1L).get();
-		assertEquals(190, MiniUpdated.getPts());
+		RaceModel MiniUpdated= repo.findById(1L).get();
+		assertEquals("Pepe", MiniUpdated.getSecond());
 	}
 	@Test
 	@Order(4)
 	void testGetByYear(){
-		Integer year=2080;
-		List<ConstructorModel> Mini4 = repo.findByYear(year);
+		String gp="Montmelo";
+		List<RaceModel> Mini4 = repo.findByGp(gp);
 		assertEquals(1, Mini4.size());
 	}
 	@Test
 	@Order(5)
-	void testDeleteConstructor(){
-		ConstructorModel Mini3= repo.findById(1L).get();
+	void testDeleteRace(){
+		RaceModel Mini3= repo.findById(1L).get();
 		repo.deleteById(Mini3.getId());
 		assertEquals(Optional.empty(), repo.findById(1L));
-	}}
-	
+	}
+}
