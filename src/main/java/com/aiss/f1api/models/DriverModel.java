@@ -16,8 +16,11 @@ public class DriverModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     private Long pos;
+
     private String name;
+    
     private String nationality;
     private String car;
     private Long pts;

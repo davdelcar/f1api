@@ -19,8 +19,13 @@ public class ConstructorModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     private Long pos;
+
     private String team;
+
+    private Integer pts;
+
     private Integer year;
     
 
@@ -78,6 +83,21 @@ public class ConstructorModel {
      */
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+
+    /**
+     * @return Integer return the pts
+     */
+    public Integer getPts() {
+        return pts;
+    }
+
+    /**
+     * @param pts the pts to set
+     */
+    public void setPts(Integer pts) {
+        this.pts = pts;
     }
 
 }
