@@ -29,6 +29,9 @@ public class RaceService {
     public Optional<RaceModel> getById(Long id){
         return raceRepository.findById(id);
     }
+    public ArrayList<RaceModel> getByGp(String gp){
+        return raceRepository.findByGp(gp);
+    }
     public boolean deleteRace(Long id){
         try{
             raceRepository.deleteById(id);
