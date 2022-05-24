@@ -11,6 +11,7 @@
 	<groupId>com.aiss</groupId>
 	<artifactId>f1api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>f1api</name>
 	<description>Api con estadísticas de la F1 desde 1950-2020</description>
 	<properties>
