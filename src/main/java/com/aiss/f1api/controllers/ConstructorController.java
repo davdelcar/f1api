@@ -38,8 +38,8 @@ public class ConstructorController {
         return constructorService.getById(id);
     }
 
-    @GetMapping("/getByYear")
-    public List<ConstructorModel> getByYear(@RequestParam("year") Integer year){
+    @GetMapping("/year/{year}")
+    public List<ConstructorModel> getByYear(@PathVariable("year") Integer year){
         return constructorService.getByYear(year);
     }
     @GetMapping("/query")
