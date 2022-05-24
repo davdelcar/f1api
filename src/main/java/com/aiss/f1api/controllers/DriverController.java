@@ -36,8 +36,8 @@ public class DriverController {
         return driverService.getById(id);
     }
 
-    @GetMapping("/getByYear")
-    public ArrayList<DriverModel> getByYear(@RequestParam("year") Integer year){
+    @GetMapping("/year/{year}")
+    public ArrayList<DriverModel> getByYear(@PathVariable("year") Integer year){
         return driverService.getByYear(year);
     }
 
