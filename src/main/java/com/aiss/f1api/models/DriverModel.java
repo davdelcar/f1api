@@ -28,14 +28,16 @@ public class DriverModel {
     private Integer year;
     
 
-    public DriverModel(long l, String string, String string2, String string3, long m, int i) {
-        this.car=string3;
-        this.name=string;
-        this.nationality=string2;
-        this.pos=l;
-        this.pts=m;
-        this.year=i;
+
+    public DriverModel(Long pos, String name, String nationality, String car, Long pts, Integer year) {
+        this.pos = pos;
+        this.name = name;
+        this.nationality = nationality;
+        this.car = car;
+        this.pts = pts;
+        this.year = year;
     }
+
 
     /**
      * @return Long return the id

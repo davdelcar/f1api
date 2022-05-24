@@ -28,16 +28,16 @@ public class DriverRepositoryTest {
     @Test
 	@Order(1)
 	void testSaveDriver() {
-		DriverModel Bustamante = new DriverModel(2L,"Bustamante", "Rumano", "Porsche", 40L, 2002);
+		DriverModel Bustamante = new DriverModel(2L,"Bustamante", "Rumano", "Porsche", 40L, 2080);
 		repo.save(Bustamante);
 		assertEquals("Bustamante", Bustamante.getName());
 	}
 	@Test
 	@Order(2)
 	void testSaveDriver2() {
-		DriverModel Jagger = new DriverModel(3L,"Jagger", "Español", "Xsara Picasso", 50L, 2002);
+		DriverModel Jagger = new DriverModel(3L,"Jagger", "Español", "Xsara Picasso", 50L, 2080);
 		repo.save(Jagger);
-		assertEquals(2002, Jagger.getYear());
+		assertEquals(2080, Jagger.getYear());
 	}
 	@Test
 	@Order(3)
@@ -51,7 +51,7 @@ public class DriverRepositoryTest {
 	@Test
 	@Order(4)
 	void testGetByYear(){
-		Integer year=2002;
+		Integer year=2080;
 		ArrayList<DriverModel> Mini4 = repo.findByYear(year);
 		assertEquals(1, Mini4.size());
 	}

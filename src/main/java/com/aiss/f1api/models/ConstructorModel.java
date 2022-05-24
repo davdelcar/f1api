@@ -30,12 +30,14 @@ public class ConstructorModel {
     private Integer year;
     
 
-    public ConstructorModel(long l, String string, int m, int i) {
-        this.pos=l;
-        this.pts=m;
-        this.team=string;
-        this.year=i;
+
+    public ConstructorModel(Long pos, String team, Integer pts, Integer year) {
+        this.pos = pos;
+        this.team = team;
+        this.pts = pts;
+        this.year = year;
     }
+
    
     /**
      * @return Long return the id

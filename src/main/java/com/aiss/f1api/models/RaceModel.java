@@ -31,26 +31,21 @@ public class RaceModel {
     private String nineth;
     private String tenth;
 
-
-
-   
-
-
-    public RaceModel(String string, String string2, String string3, String string4, String string5, String string6,
-            String string7, String string8, String string9, String string10, String string11, String string12) {
-                this.gp=string;
-                this.date=string2;
-                this.first=string3;
-                this.second=string4;
-                this.third=string5;
-                this.fourth=string6;
-                this.fifth=string7;
-                this.sixth=string8;
-                this.seventh=string9;
-                this.eighth=string10;
-                this.nineth=string11;
-                this.tenth=string12;
+    public RaceModel(String gp, String date, String first, String second, String third, String fourth, String fifth, String sixth, String seventh, String eighth, String nineth, String tenth) {
+        this.gp = gp;
+        this.date = date;
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.fourth = fourth;
+        this.fifth = fifth;
+        this.sixth = sixth;
+        this.seventh = seventh;
+        this.eighth = eighth;
+        this.nineth = nineth;
+        this.tenth = tenth;
     }
+
 
     /**
      * @return Long return the id
