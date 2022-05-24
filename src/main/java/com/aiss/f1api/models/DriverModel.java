@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "drivers")
 public class DriverModel {
+    public DriverModel(){}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,6 +27,15 @@ public class DriverModel {
     private Long pts;
     private Integer year;
     
+
+    public DriverModel(long l, String string, String string2, String string3, long m, int i) {
+        this.car=string3;
+        this.name=string;
+        this.nationality=string2;
+        this.pos=l;
+        this.pts=m;
+        this.year=i;
+    }
 
     /**
      * @return Long return the id

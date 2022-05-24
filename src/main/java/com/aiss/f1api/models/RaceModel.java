@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="race")
 public class RaceModel {
+    public RaceModel(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +35,22 @@ public class RaceModel {
 
    
 
+
+    public RaceModel(String string, String string2, String string3, String string4, String string5, String string6,
+            String string7, String string8, String string9, String string10, String string11, String string12) {
+                this.gp=string;
+                this.date=string2;
+                this.first=string3;
+                this.second=string4;
+                this.third=string5;
+                this.fourth=string6;
+                this.fifth=string7;
+                this.sixth=string8;
+                this.seventh=string9;
+                this.eighth=string10;
+                this.nineth=string11;
+                this.tenth=string12;
+    }
 
     /**
      * @return Long return the id
