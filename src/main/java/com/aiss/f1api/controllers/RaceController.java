@@ -30,8 +30,8 @@ public class RaceController {
     public Optional<RaceModel> getById(@PathVariable("id") Long id){
         return raceService.getById(id);
     }
-    @GetMapping("/gp/{gp}")
-    public ArrayList<RaceModel> getByGp(@PathVariable("gp") String gp){
+    @GetMapping("/query")
+    public ArrayList<RaceModel> getByGp(@RequestParam("gp") String gp){
         return raceService.getByGp(gp);
     }
     @GetMapping()
