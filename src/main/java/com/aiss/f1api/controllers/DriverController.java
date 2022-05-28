@@ -26,24 +26,19 @@ public class DriverController {
     @Autowired
     DriverService driverService;
 
-    @GetMapping()
-    public ArrayList<DriverModel> getDrivers(){
-        return driverService.getDrivers();
-    }
-
     @GetMapping("{id}")
     public Optional<DriverModel> getById(@PathVariable("id") Long id){
         return driverService.getById(id);
     }
 
-    @GetMapping("/year/{year}")
-    public ArrayList<DriverModel> getByYear(@PathVariable("year") Integer year){
+    @GetMapping("/query")
+    public ArrayList<DriverModel> getByYear(@RequestParam("year") Integer year){
         return driverService.getByYear(year);
     }
 
-    @GetMapping("/query")
+    @GetMapping()
     public List<DriverModel> listDrivers
-    (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
+    (@RequestParam(value="page", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){

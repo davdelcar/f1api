@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConstructorRepository extends JpaRepository<ConstructorModel, Long>, JpaSpecificationExecutor<ConstructorModel> {
-    List<ConstructorModel> findByYear(Integer year);
+    public abstract List<ConstructorModel> findByYear(Integer year);
     
 }

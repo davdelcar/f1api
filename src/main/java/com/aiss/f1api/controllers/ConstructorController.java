@@ -11,6 +11,7 @@ import com.aiss.f1api.services.ConstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,24 +28,18 @@ public class ConstructorController {
     @Autowired
     ConstructorService constructorService;
 
-
-    @GetMapping()
-    public ArrayList<ConstructorModel> getConstructors(){
-        return constructorService.getConstructors();
-    }
-
-    @GetMapping("{id}")
+     @GetMapping("{id}")
     public Optional<ConstructorModel> getById(@PathVariable("id") Long id){
-        return constructorService.getById(id);
+        return this.constructorService.getById(id);
     }
 
-    @GetMapping("/year/{year}")
-    public List<ConstructorModel> getByYear(@PathVariable("year") Integer year){
+    @GetMapping("/query")
+    public List<ConstructorModel> getByYear(@RequestParam("year") Integer year){
         return constructorService.getByYear(year);
     }
-    @GetMapping("/query")
+    @GetMapping()
     public List<ConstructorModel> listConstructors
-    (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
+    (@RequestParam(value="page", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){

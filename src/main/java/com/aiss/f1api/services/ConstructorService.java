@@ -20,10 +20,7 @@ import org.springframework.stereotype.Service;
 public class ConstructorService {
     @Autowired
     ConstructorRepository constructorRepository;
-    //Crear metodos (get,put,post....)
-    public ArrayList<ConstructorModel> getConstructors(){
-       return (ArrayList<ConstructorModel>) constructorRepository.findAll();
-    }
+
     public ConstructorModel saveConstructor(ConstructorModel constructor){
         return constructorRepository.save(constructor);
     }
@@ -33,6 +30,7 @@ public class ConstructorService {
     public List<ConstructorModel> getByYear(Integer year){
         return constructorRepository.findByYear(year);
     }
+
     public boolean deleteConstructor(Long id){
         try{
             constructorRepository.deleteById(id);
