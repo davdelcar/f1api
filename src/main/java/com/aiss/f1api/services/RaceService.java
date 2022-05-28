@@ -19,10 +19,7 @@ import org.springframework.stereotype.Service;
 public class RaceService {
     @Autowired
     RaceRepository raceRepository;
-    //Crear metodos (get,put,post....)
-    public ArrayList<RaceModel> getRaces(){
-        return (ArrayList<RaceModel>) raceRepository.findAll();
-    }
+
     public RaceModel saveRace(RaceModel race){
         return raceRepository.save(race);
     }

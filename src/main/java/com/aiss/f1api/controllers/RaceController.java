@@ -26,11 +26,6 @@ public class RaceController {
     @Autowired
     RaceService raceService;
 
-    @GetMapping()
-    public ArrayList<RaceModel> getRaces(){
-        return raceService.getRaces();
-    }
-
     @GetMapping("{id}")
     public Optional<RaceModel> getById(@PathVariable("id") Long id){
         return raceService.getById(id);
@@ -39,9 +34,9 @@ public class RaceController {
     public ArrayList<RaceModel> getByGp(@PathVariable("gp") String gp){
         return raceService.getByGp(gp);
     }
-    @GetMapping("/query")
+    @GetMapping()
     public List<RaceModel> listRaces
-    (@RequestParam(value="pageNo", defaultValue = "0", required = false) int pages,
+    (@RequestParam(value="page", defaultValue = "0", required = false) int pages,
     @RequestParam(value = "pageSize", defaultValue = "20", required = false) int size,
     @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenarPor,
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){

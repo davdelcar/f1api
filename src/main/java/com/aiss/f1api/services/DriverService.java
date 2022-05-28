@@ -21,10 +21,6 @@ public class DriverService {
     @Autowired
     DriverRepository driverRepository;
 
-    //Crear metodos (get,put,post....)
-    public ArrayList<DriverModel> getDrivers(){
-        return (ArrayList<DriverModel>) driverRepository.findAll();
-    }
     public DriverModel saveDriver(DriverModel driver){
         return driverRepository.save(driver);
     }
