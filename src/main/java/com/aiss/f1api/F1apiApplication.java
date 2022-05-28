@@ -6,11 +6,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 
 @SpringBootApplication
-public class F1apiApplication extends WebMvcConfigurerAdapter {
-
+@ComponentScan
+public class F1apiApplication extends SpringBootServletInitializer implements WebMvcConfigurer {
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(F1apiApplication.class);
+    }
 	public static void main(String[] args) {
 		SpringApplication.run(F1apiApplication.class, args);
 	}
