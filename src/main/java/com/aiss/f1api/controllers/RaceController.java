@@ -2,6 +2,7 @@ package com.aiss.f1api.controllers;
 
 import com.aiss.f1api.services.RaceService;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
@@ -24,21 +25,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import antlr.debug.Event;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/race")
 public class RaceController {
     @Autowired
     RestTemplate restTemplate;
-    RaceService raceService;
+    @Autowired
+    public RaceService raceService;
+    
 
+    @ApiOperation(value = "Obtiene una carrera dado un id")
     @GetMapping("{id}")
     public Optional<RaceModel> getById(@PathVariable("id") Long id){
         return raceService.getById(id);
     }
+    @ApiOperation(value = "Obtiene una carrera dado un Gran Premio")
     @GetMapping("/query")
     public ArrayList<RaceModel> getByGp(@RequestParam("gp") String gp){
         return raceService.getByGp(gp);
     }
+    @ApiOperation(value = "Obtiene todas las carreras de forma paginada")
     @GetMapping()
     public List<RaceModel> listRaces
     (@RequestParam(value="page", defaultValue = "0", required = false) int pages,
@@ -47,12 +56,12 @@ public class RaceController {
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
         return raceService.getAllRaces(pages, size, ordenarPor, sortDir);
     } 
-
+    @ApiOperation(value = "Crea un nuevo piloto")
     @PostMapping()
     public RaceModel saveRace(@RequestBody RaceModel race){
         return raceService.saveRace(race);
     }
-
+    @ApiOperation(value = "Elimina un piloto")
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long id){
         boolean ok = this.raceService.deleteRace(id);
@@ -62,11 +71,10 @@ public class RaceController {
             return "No se pudo eliminar el race con Id"+id;
         }
     }
-
+    @ApiOperation(value = "Modificar un piloto")
     @PutMapping("{id}")
     public RaceModel updateRace(@PathVariable("id") Long id, @RequestBody RaceModel race){
         RaceModel race1 = raceService.getById(id).get();
-        race1.setId(race.getId());
         race1.setGp(race.getGp());
         race1.setFirst(race.getFirst());
         race1.setSecond(race.getSecond());
@@ -86,6 +94,11 @@ public class RaceController {
     ResponseEntity<Object> response = restTemplate.getForEntity("https://eventsapi-v1.herokuapp.com/api/globalEvents/", Object.class);
     return response.getBody();
     }
-    @PostMapping("/eventos")
-    public Object
+    @DeleteMapping("/eventos/{id}")
+    public Object deleteApi(@PathVariable ("id") String id){
+        restTemplate.delete(URI.create("https://eventsapi-v1.herokuapp.com/api/globalEvents/"));
+
+        return ResponseEntity.ok();
+
+    }
 }

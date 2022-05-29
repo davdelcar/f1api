@@ -20,22 +20,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/driver")
 public class DriverController {
     @Autowired
     DriverService driverService;
-
+    
+    @ApiOperation(value = "Obtiene un piloto dado un id")
     @GetMapping("{id}")
     public Optional<DriverModel> getById(@PathVariable("id") Long id){
         return driverService.getById(id);
     }
-
+    @ApiOperation(value = "Obtiene un piloto en un año concreto")
     @GetMapping("/query")
     public ArrayList<DriverModel> getByYear(@RequestParam("year") Integer year){
         return driverService.getByYear(year);
     }
-
+    @ApiOperation(value = "Obtiene todos los pilotos de forma paginada")
     @GetMapping()
     public List<DriverModel> listDrivers
     (@RequestParam(value="page", defaultValue = "0", required = false) int pages,
@@ -44,12 +47,12 @@ public class DriverController {
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
         return driverService.getAllDrivers(pages, size, ordenarPor, sortDir);
     } 
-
+    @ApiOperation(value = "Crea un nuevo piloto")
     @PostMapping()
     public DriverModel saveDriver(@RequestBody DriverModel driver){
         return driverService.saveDriver(driver);
     }
-
+    @ApiOperation(value = "Elimina un piloto")
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long id){
         boolean ok = this.driverService.deleteDriver(id);
@@ -59,11 +62,10 @@ public class DriverController {
             return "No se pudo eliminar el driver con Id"+id;
         }
     }
-
+    @ApiOperation(value = "Modificar un piloto")
     @PutMapping("{id}")
     public DriverModel updateDriver(@PathVariable("id") Long id, @RequestBody DriverModel driver){
         DriverModel driver1 = driverService.getById(id).get();
-        driver1.setId(driver.getId());
         driver1.setPos(driver.getPos());
         driver1.setName(driver.getName());
         driver1.setYear(driver.getYear());

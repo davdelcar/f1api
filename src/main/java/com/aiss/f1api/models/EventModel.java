@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @Generated("jsonschema2pojo")
 public class EventModel {
 
@@ -15,6 +17,17 @@ private String category;
 private String location;
 private String date;
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    public EventModel(String name, String description, String organizer, String category, String location, String date) {
+        this.name = name;
+        this.description = description;
+        this.organizer = organizer;
+        this.category = category;
+        this.location = location;
+        this.date = date;
+    }
+
+
 
 public String getId() {
 return id;

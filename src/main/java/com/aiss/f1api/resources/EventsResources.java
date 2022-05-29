@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aiss.f1api.models.EventModel;
+import springfox.documentation.annotations.ApiIgnore;
 
+import com.aiss.f1api.models.EventModel;
+@ApiIgnore
 @RestController
 @RequestMapping("/events")
 public class EventsResources {
