@@ -86,6 +86,6 @@ public class RaceController {
     ResponseEntity<Object> response = restTemplate.getForEntity("https://eventsapi-v1.herokuapp.com/api/globalEvents/", Object.class);
     return response.getBody();
     }
-    @PostMapping("/eventos")
-    public Object
+    //@PostMapping("/eventos")
+    //public Object
 }
