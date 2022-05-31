@@ -56,12 +56,12 @@ public class RaceController {
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
         return raceService.getAllRaces(pages, size, ordenarPor, sortDir);
     } 
-    @ApiOperation(value = "Crea un nuevo piloto")
+    @ApiOperation(value = "Crea una nueva carrera")
     @PostMapping()
     public RaceModel saveRace(@RequestBody RaceModel race){
         return raceService.saveRace(race);
     }
-    @ApiOperation(value = "Elimina un piloto")
+    @ApiOperation(value = "Elimina una carrera")
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long id){
         boolean ok = this.raceService.deleteRace(id);
@@ -71,7 +71,7 @@ public class RaceController {
             return "No se pudo eliminar el race con Id"+id;
         }
     }
-    @ApiOperation(value = "Modificar un piloto")
+    @ApiOperation(value = "Modificar una carrera")
     @PutMapping("{id}")
     public RaceModel updateRace(@PathVariable("id") Long id, @RequestBody RaceModel race){
         RaceModel race1 = raceService.getById(id).get();
