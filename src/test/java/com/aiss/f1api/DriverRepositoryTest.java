@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
-import com.aiss.f1api.models.ConstructorModel;
+import java.util.Optional;
+
+
+
 import com.aiss.f1api.models.DriverModel;
-import com.aiss.f1api.repositories.ConstructorRepository;
+
 import com.aiss.f1api.repositories.DriverRepository;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
