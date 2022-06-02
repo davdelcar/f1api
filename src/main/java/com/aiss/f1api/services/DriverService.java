@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.List;
 
 import com.aiss.f1api.models.DriverModel;
-import com.aiss.f1api.repositories.DriverRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
