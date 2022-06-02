@@ -32,15 +32,17 @@ public class ConstructorController {
     @Autowired
     ConstructorService constructorService;
 
-     @GetMapping("{id}")
+    @ApiOperation(value = "Obtiene un contructor dado un id")
+    @GetMapping("{id}")
     public Optional<ConstructorModel> getById(@PathVariable("id") Long id){
         return this.constructorService.getById(id);
     }
-
+    @ApiOperation(value = "Obtiene el ranking de contructores en un año concreto")
     @GetMapping("/query")
     public List<ConstructorModel> getByYear(@RequestParam("year") Integer year){
         return constructorService.getByYear(year);
     }
+    @ApiOperation(value = "Obtiene todos los constructores de forma paginada")
     @GetMapping()
     public List<ConstructorModel> listConstructors
     (@RequestParam(value="page", defaultValue = "0", required = false) int pages,
@@ -49,11 +51,13 @@ public class ConstructorController {
     @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
         return constructorService.getAllConstructors(pages, size, ordenarPor, sortDir);
     }   
+
+    @ApiOperation(value = "Crea un nuevo constructor")
     @PostMapping()
     public ConstructorModel saveConstructor(@RequestBody ConstructorModel constructor){
         return this.constructorService.saveConstructor(constructor);
     }
-
+    @ApiOperation(value = "Elimina un constructor")
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable("id") Long id){
         boolean ok = this.constructorService.deleteConstructor(id);
@@ -63,15 +67,13 @@ public class ConstructorController {
             return "No se pudo eliminar el constructor con Id"+id;
         }
     }
-
+    @ApiOperation(value = "Modificar un construtor")
     @PutMapping("{id}")
     public ConstructorModel updateConstructor(@PathVariable("id") Long id, @RequestBody ConstructorModel constructor){
         ConstructorModel constructor1 = constructorService.getById(id).get();
-        constructor1.setId(constructor.getId());
         constructor1.setPos(constructor.getPos());
         constructor1.setTeam(constructor.getTeam());
         constructor1.setYear(constructor.getYear());
         return constructorService.saveConstructor(constructor1);
     }
-    
 }

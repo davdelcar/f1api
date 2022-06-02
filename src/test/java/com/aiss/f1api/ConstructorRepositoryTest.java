@@ -50,9 +50,9 @@ public class ConstructorRepositoryTest {
 	@Test
 	@Order(4)
 	void testGetByYear(){
-		Integer year=2080;
+		Integer year=1990;
 		List<ConstructorModel> Mini4 = repo.findByYear(year);
-		assertEquals(2, Mini4.size());
+		assertEquals(10, Mini4.size());
 	}
 	@Test
 	@Order(5)

@@ -51,9 +51,9 @@ public class DriverRepositoryTest {
 	@Test
 	@Order(4)
 	void testGetByYear(){
-		Integer year=2080;
+		Integer year=1990;
 		ArrayList<DriverModel> Mini4 = repo.findByYear(year);
-		assertEquals(1, Mini4.size());
+		assertEquals(18, Mini4.size());
 	}
 	@Test
 	@Order(5)

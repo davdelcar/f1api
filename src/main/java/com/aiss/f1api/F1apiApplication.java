@@ -9,21 +9,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @SpringBootApplication
-@ComponentScan
-public class F1apiApplication extends SpringBootServletInitializer implements WebMvcConfigurer {
-	@Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(F1apiApplication.class);
-    }
+
+public class F1apiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(F1apiApplication.class, args);
-	}
-	@Bean
-	public RestTemplate restTemplate() {
-		SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-		factory.setConnectTimeout(3000);
-		factory.setReadTimeout(3000);
-		return new RestTemplate(factory);
 	}
 
 }

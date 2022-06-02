@@ -17,13 +17,6 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-	<repositories>
-		<repository>
-		  <id>maven-restlet</id>
-		  <name>Public online Restlet repository</name>
-		  <url>http://maven.restlet.org</url>
-		</repository>
-	  </repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,9 +63,8 @@
 		</dependency>
 		<dependency>
             <groupId>org.springframework.boot</groupId>         <!--its for spring mvc related -->
-            <artifactId>spring-boot-starter-web</artifactId>
+        	<artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-	
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -82,17 +74,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet</artifactId>
-			<version>2.1-M7</version>
-		  </dependency>
-		  
-		  <dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.simple</artifactId>
-			<version>2.1-M7</version>
-		  </dependency>
 	</dependencies>
 
 	<build>

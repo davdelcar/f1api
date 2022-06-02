@@ -51,10 +51,10 @@ public class RaceRepositoryTest {
 	}
 	@Test
 	@Order(4)
-	void testGetByYear(){
-		String gp="Montmelo";
+	void testGetByGranPremio(){
+		String gp="Italy";
 		List<RaceModel> Mini4 = repo.findByGp(gp);
-		assertEquals(1, Mini4.size());
+		assertEquals(16, Mini4.size());
 	}
 	@Test
 	@Order(5)
