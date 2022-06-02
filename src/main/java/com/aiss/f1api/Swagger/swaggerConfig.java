@@ -1,4 +1,4 @@
-package com.aiss.f1api.Swagger;
+package com.aiss.f1api.swagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @EnableWebMvc
-public class swaggerConfig implements WebMvcConfigurer {
+public class SwaggerConfig implements WebMvcConfigurer {
 
     @Bean
     public Docket api() {
