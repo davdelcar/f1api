@@ -1,7 +1,5 @@
 package com.aiss.f1api.models;
 
-import java.time.Year;
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
